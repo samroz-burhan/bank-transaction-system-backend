@@ -6,8 +6,8 @@ const router = express.Router();
 
 
 router.post(
-  "/accounts",
-  authMiddleware.authMiddleware,
+  "/",
+  authMiddleware,
   accountController.createAccountController,
 );
 

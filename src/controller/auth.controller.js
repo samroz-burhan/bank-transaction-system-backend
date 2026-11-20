@@ -12,11 +12,11 @@ async function registerUserController (req, res) {
 
     const isExists = await userModel.findOne({ email });
 
-    if(!isExists){
+    if(isExists){
         return res.status(422).json({
             message: "User already exists with email",
             status: "failed"
-        })
+        }) 
     }
 
     const user = await userModel.create({
@@ -55,6 +55,7 @@ async function loginUserController (req, res) {
     const { email, password } = req.body;
 
     const user = await userModel.findOne({ email }).select("+password");
+    
     if(!user){
         return res.status(401).json({
             message: "Email or password is invalid"
